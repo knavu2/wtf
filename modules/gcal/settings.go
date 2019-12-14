@@ -37,6 +37,7 @@ type Settings struct {
 	withLocation          bool   `help:"Whether or not to show the location of the appointment." values:"true or false"`
 	timezone              string `help:"The time zone used to display calendar event times." values:"A valid TZ database time zone string" optional:"true"`
 	calendarReadLevel     string `help:"The calender read level specifies level you want to read events. Default: writer " values:"reader, writer" optional:"true"`
+	showEndTime           bool   `help:"Whether or not to display the end time of the event." values:"true or false"`
 }
 
 // NewSettingsFromYAML creates and returns an instance of Settings with configuration options populated
@@ -56,6 +57,7 @@ func NewSettingsFromYAML(name string, ymlConfig *config.Config, globalConfig *co
 		withLocation:          ymlConfig.UBool("withLocation", true),
 		timezone:              ymlConfig.UString("timezone", ""),
 		calendarReadLevel:     ymlConfig.UString("calendarReadLevel", "writer"),
+		showEndTime:           ymlConfig.UBool("showEndTime", false),
 	}
 
 	settings.colors.day = ymlConfig.UString("colors.day", "forestgreen")
